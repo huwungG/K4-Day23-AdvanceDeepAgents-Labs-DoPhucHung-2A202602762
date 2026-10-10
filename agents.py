@@ -53,6 +53,10 @@ WORKFLOW (follow in order):
    empty, or weak, re-delegate with a narrower question or a different source family. Never invent sources or numbers.
 
 4. MERGE all notes into {SOURCES_PATH}: one JSON array, numbered n=1..k, no duplicate URLs, correct `source` family per URL.
+   Label each source by the URL the tool returned: ONLY an exact https://arxiv.org/abs/<id> URL from arxiv_search
+   is "arxiv"; ONLY an exact https://huggingface.co/papers/<id> URL from hf_search_papers / hf_daily_papers is
+   "hf-search" / "hf-daily"; EVERYTHING else (arxiv.org/html, arxiv.org/pdf, mirrors, blogs, project pages) is "web".
+   Never rewrite a URL to make it look canonical. The validator rejects mislabelled sources.
    After merging, count the distinct families. If fewer than 3 of (arxiv, hf-daily, hf-search, web) are present, delegate
    ANOTHER researcher specifically to a missing family (e.g. "use only hf_search_papers and hf_daily_papers about <topic>")
    and merge again. The final report MUST draw on at least 3 families whenever the notes contain them: cite the most
@@ -65,6 +69,8 @@ WORKFLOW (follow in order):
    (paper titles, years, numbers from the sources); mix recent work (last two years) with foundational work and
    multiple source kinds. Do NOT write the `## References` section yourself — the finalizer script generates it.
    Write grouped citations as separate brackets ([1][2], never [1, 2] or [1-3]).
+   Each [n] must point to the source that actually states that fact: re-read the notes block for that source
+   before citing it. The file ends with the last body paragraph: no `## References` heading, no `---`, no closing note.
 
 6. RUN the finalizer with `execute`: `python3 {FINALIZER_PATH}` (no arguments). It drops uncited sources, merges
    duplicate URLs, renumbers [n] by first appearance, and regenerates `## References` (one line per source).
@@ -73,7 +79,8 @@ WORKFLOW (follow in order):
    add citations to it (or delegate more research) and re-run the finalizer.
 
 7. RUN the validator with `execute`: `python3 {VALIDATOR_PATH}` and fix every reported problem (missing citations,
-   uncited sources, bad reference lines) until it prints OK. Never finish with a failing validator.
+   uncited sources, bad reference lines, mislabelled source families, fewer than 3 families, duplicate
+   `## References` headings) by editing {SOURCES_PATH} / the report body and re-running the finalizer, until it prints OK. Never finish with a failing validator.
 
 8. Have the `citation-checker` subagent SPOT-CHECK 4-6 non-obvious claims: give it each claim plus its source URL;
    it fetches the URL and answers SUPPORTED / PARTIAL / UNSUPPORTED / UNVERIFIABLE with one sentence of evidence.
@@ -117,7 +124,8 @@ per source, exactly like this (repeat per source, keep `source` = the tool famil
 - id: <arXiv id like 2501.00001 OR HF id OR short slug>
 - url: <exact URL returned by the tool>
 - date: <published date YYYY-MM-DD or n.d.>
-- source: <arxiv | hf-daily | hf-search | web>
+- source: <arxiv | hf-daily | hf-search | web>   (the TOOL that returned it: anything found by web_search/web_fetch is
+  "web", even an arxiv.org or huggingface.co page; copy the url exactly, never rewrite it)
 - points:
   - <key finding 1, concrete>
   - <key finding 2, with numbers if the source gives them>

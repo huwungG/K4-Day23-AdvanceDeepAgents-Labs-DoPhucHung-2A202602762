@@ -1,0 +1,162 @@
+[
+  {
+    "n": 1,
+    "id": "2203.02155",
+    "url": "https://arxiv.org/abs/2203.02155",
+    "title": "Training language models to follow instructions with human feedback",
+    "date": "2022-03-04",
+    "source": "arxiv"
+  },
+  {
+    "n": 2,
+    "id": "1707.06347",
+    "url": "https://arxiv.org/abs/1707.06347",
+    "title": "Proximal Policy Optimization Algorithms",
+    "date": "2017-07-20",
+    "source": "arxiv"
+  },
+  {
+    "n": 3,
+    "id": "ppo-doc",
+    "url": "https://spinningup.openai.com/en/latest/algorithms/ppo.html",
+    "title": "Proximal Policy Optimization — Spinning Up documentation",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 4,
+    "id": "2501.09686",
+    "url": "https://arxiv.org/html/2501.09686",
+    "title": "Towards Large Reasoning Models: A Survey of Reinforced Reasoning with Large Language Models",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 5,
+    "id": "lrml-survey",
+    "url": "https://www.cell.com/patterns/pdf/S2666-3899(25)00218-1.pdf",
+    "title": "Toward large reasoning models: A survey of reinforced reasoning with large language models",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 6,
+    "id": "2502.12853",
+    "url": "https://huggingface.co/papers/2502.12853",
+    "title": "S^2R: Teaching LLMs to Self-verify and Self-correct via Reinforcement Learning",
+    "date": "2025-02-18",
+    "source": "hf-search"
+  },
+  {
+    "n": 7,
+    "id": "2601.17223",
+    "url": "https://huggingface.co/papers/2601.17223",
+    "title": "Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning",
+    "date": "2026-01-23",
+    "source": "hf-search"
+  },
+  {
+    "n": 8,
+    "id": "2601.20649",
+    "url": "https://huggingface.co/papers/2601.20649",
+    "title": "P2S: Probabilistic Process Supervision for General-Domain Reasoning Question Answering",
+    "date": "2026-01-28",
+    "source": "hf-search"
+  },
+  {
+    "n": 9,
+    "id": "2501.12948",
+    "url": "https://arxiv.org/abs/2501.12948",
+    "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+    "date": "2025-01-22",
+    "source": "arxiv"
+  },
+  {
+    "n": 10,
+    "id": "open-r1",
+    "url": "https://huggingface.co/blog/open-r1",
+    "title": "Open-R1: a fully open reproduction of DeepSeek-R1",
+    "date": "2025-01-28",
+    "source": "web"
+  },
+  {
+    "n": 11,
+    "id": "open-r1",
+    "url": "https://github.com/huggingface/open-r1?tab=readme-ov-file",
+    "title": "huggingface/open-r1",
+    "date": "2025-01-24",
+    "source": "web"
+  },
+  {
+    "n": 12,
+    "id": "r1_redistill_blogpost",
+    "url": "https://dropbox.github.io/r1_redistill_blogpost/",
+    "title": "Re-Distilling Smaller DeepSeek R1 Models for Better Performance",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 13,
+    "id": "2504.20834",
+    "url": "https://huggingface.co/papers/2504.20834",
+    "title": "Reinforcement Learning for LLM Reasoning Under Memory Constraints",
+    "date": "2025-04-29",
+    "source": "hf-search"
+  },
+  {
+    "n": 14,
+    "id": "2506.14965",
+    "url": "https://huggingface.co/papers/2506.14965",
+    "title": "Revisiting Reinforcement Learning for LLM Reasoning from A Cross-Domain Perspective",
+    "date": "2025-06-17",
+    "source": "hf-search"
+  },
+  {
+    "n": 15,
+    "id": "2506.02177",
+    "url": "https://huggingface.co/papers/2506.02177",
+    "title": "Act Only When It Pays: Efficient Reinforcement Learning for LLM Reasoning via Selective Rollouts",
+    "date": "2025-06-02",
+    "source": "hf-search"
+  },
+  {
+    "n": 16,
+    "id": "2506.01939",
+    "url": "https://huggingface.co/papers/2506.01939",
+    "title": "Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning",
+    "date": "2025-06-02",
+    "source": "hf-search"
+  },
+  {
+    "n": 17,
+    "id": "2510.11701",
+    "url": "https://huggingface.co/papers/2510.11701",
+    "title": "Demystifying Reinforcement Learning in Agentic Reasoning",
+    "date": "2025-10-13",
+    "source": "hf-search"
+  },
+  {
+    "n": 18,
+    "id": "2412.10400",
+    "url": "https://arxiv.org/html/2412.10400",
+    "title": "Reinforcement Learning Enhanced LLMs: A Survey",
+    "date": "n.d.",
+    "source": "web"
+  },
+  {
+    "n": 19,
+    "id": "2509.08827",
+    "url": "https://github.com/TsinghuaC3I/Awesome-RL-for-LRMs/blob/main/README.md",
+    "title": "A Survey of Reinforcement Learning for Large Reasoning Models",
+    "date": "2025-09-12",
+    "source": "web"
+  },
+  {
+    "n": 20,
+    "id": "simpleRL-reason",
+    "url": "https://github.com/hkust-nlp/simpleRL-reason?tab=readme-ov-file",
+    "title": "Simple Reinforcement Learning for Reasoning",
+    "date": "2025-01-25",
+    "source": "web"
+  }
+]

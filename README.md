@@ -4,6 +4,25 @@ Lab dựng một **hệ thống deep research đa tác tử**: người dùng ch
 
 Hình thức: **bài thực hành cá nhân**. Ngôn ngữ lập trình: Python 3.11 trở lên.
 
+## Bài nộp: cách cài đặt và chạy
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env    # điền LAB_MODEL=openai:gpt-4o-mini + OPENAI_API_KEY; SANDBOX=docker nếu không có Daytona; EXA_API_KEY (khuyến nghị)
+python tools.py                                   # thử 5 công cụ nguồn dữ liệu
+python research.py "survey about world model"     # chạy một chủ đề
+python self_check.py                              # kiểm tra trước khi nộp
+```
+
+Cách đọc `reports/`: mỗi chủ đề trong `topics.md` có ba tệp cùng tên `<slug>`:
+
+- `<slug>.md`: báo cáo (TL;DR, Background, các phần theo chủ đề, Trends and open problems, References); mỗi `[n]` trỏ tới dòng `[n]` trong `## References`.
+- `<slug>.sources.json`: danh sách nguồn `{n, id, url, title, date, source}`; `source` là họ công cụ đã trả về nguồn (`arxiv`, `hf-daily`, `hf-search`, `web`).
+- `<slug>.meta.json`: thống kê lần chạy (mô hình, thời gian, `subagent_calls`, `tool_calls`, token của lead, `n_sources`, `source_families`).
+
+Kiểm tra trích dẫn của một báo cáo: `python3 check_citations.py reports/<slug>.md reports/<slug>.sources.json`.
+
 ## 1. Mục tiêu học tập
 
 Sau lab, bạn có thể:

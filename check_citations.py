@@ -16,6 +16,11 @@ _REF_LINE = re.compile(r"^\s*\[(\d+)\]")
 _URL_RE = re.compile(r"https?://\S+")
 _GROUP_RE = re.compile(r"\[(\d+(?:\s*[,–-]\s*\d+)*)\](?!\()")
 _CODE_RE = re.compile(r"(```.*?```|`[^`\n]*`)", re.DOTALL)
+_ARXIV_ABS = re.compile(r"https://arxiv\.org/abs/[\w.\-/]+")
+_HF_PAPER = re.compile(r"https://huggingface\.co/papers/[\w.\-]+")
+_FAMILY_URL = {"arxiv": _ARXIV_ABS, "hf-daily": _HF_PAPER, "hf-search": _HF_PAPER, "web": None}
+_FAMILY_HINT = {"arxiv": "https://arxiv.org/abs/<id>", "hf-daily": "https://huggingface.co/papers/<id>",
+                "hf-search": "https://huggingface.co/papers/<id>"}
 
 
 def _strip_code(text):
@@ -81,6 +86,7 @@ def check(report_text, sources):
     by_n = {}
     seen_urls = {}
     valid_numbers = set()
+    families = set()
     for entry in sources:
         if not isinstance(entry, dict):
             problems.append(f"source entry is not an object: {entry!r}")
@@ -105,9 +111,25 @@ def check(report_text, sources):
                 problems.append(f"duplicate url {url} in sources [{seen_urls[url]}] and [{n}]")
             else:
                 seen_urls[url] = n
+        # source family must be known and match the URL shape (graders check this).
+        family = entry.get("source")
+        if family not in _FAMILY_URL:
+            problems.append(f"source [{n}] has unknown source family {family!r} (use arxiv, hf-daily, hf-search or web)")
+        elif _FAMILY_URL[family] and not (url_ok and _FAMILY_URL[family].fullmatch(url)):
+            problems.append(f"source [{n}] is labelled {family!r} but its url {url} is not "
+                            f"{_FAMILY_HINT[family]}: it came from web_search/web_fetch, relabel it 'web'")
+        if family in _FAMILY_URL:
+            families.add(family)
 
-    # Rule 3: split at ## References heading.
+    # Rule 2b: the report must draw on at least 3 source families (RUBRIC 2.2).
+    if len(families) < 3:
+        problems.append(f"only {len(families)} source families cited ({', '.join(sorted(families)) or 'none'}): "
+                        f"need at least 3 of arxiv, hf-daily, hf-search, web")
+
+    # Rule 3: split at ## References heading (exactly one).
     matches = list(_REF_HEADING.finditer(report_text))
+    if len(matches) > 1:
+        problems.append(f"{len(matches)} '## References' headings: keep exactly one, at the end")
     if not matches:
         problems.append("missing ## References heading")
         body = report_text
